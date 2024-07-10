@@ -1,14 +1,8 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
+import { FAMILIES, QUERIES } from "../../constants";
 
-const MainStory = ({
-  id,
-  title,
-  image,
-  location,
-  abstract,
-  ...delegated
-}) => {
+const MainStory = ({ id, title, image, location, abstract, ...delegated }) => {
   return (
     <Wrapper {...delegated}>
       <a href={`/story/${id}`}>
@@ -44,6 +38,18 @@ const Abstract = styled.p`
   font-size: 1rem;
   margin-bottom: 1em;
   white-space: pre-wrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  overflow: hidden;
+
+  @media ${QUERIES.tabletAndUp} {
+    -webkit-line-clamp: 16;
+  }
+
+  @media ${QUERIES.laptopAndUp} {
+    -webkit-line-clamp: 9;
+  }
 `;
 
 const Location = styled.span`
@@ -52,7 +58,11 @@ const Location = styled.span`
 
 const ReadMore = styled.a`
   font-weight: var(--font-weight-medium);
+  font-color: black;
+  font-family: ${FAMILIES.serif};
   font-style: italic;
+  line-height: ${24 / 16}rem;
+  font-size: ${16 / 16}rem;
 
   &:hover {
     text-decoration: underline;
